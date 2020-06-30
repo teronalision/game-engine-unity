@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponHandle : MonoBehaviour
+public class bulletMove : MonoBehaviour
 {
-    public float cooltime;
-    public float speed;
-    public GameObject bullet;
+    public Vector3 dir;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position += dir * Time.deltaTime;
+    }
+
+    public void Init(Vector3 to)
+    {
+        dir = to;
     }
 }

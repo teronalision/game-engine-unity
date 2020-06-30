@@ -14,6 +14,7 @@ public class UI_map : MonoBehaviour
     void Start()
     {
         mSlider = GetComponent<Slider>();
+        charic = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
