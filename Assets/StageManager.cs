@@ -11,6 +11,10 @@ public class StageManager : MonoBehaviour
     public GameObject[] enermys;
 
 
+    private AudioSource adso;
+    public AudioClip bgm;
+    public AudioClip over;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,8 +23,10 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        adso = GetComponent<AudioSource>();
         Instantiate<GameObject>(goal, new Vector3(80, 0, 0), Quaternion.identity);
         SetField();
+        
     }
 
     // Update is called once per frame
@@ -32,8 +38,10 @@ public class StageManager : MonoBehaviour
     public void SetField()
     {
         Instantiate<GameObject>(player, Vector3.zero, Quaternion.identity);
-        
 
+        adso.clip = bgm;
+        adso.loop = true;
+        adso.Play();
     }
 
     public void StageClear()
@@ -45,6 +53,10 @@ public class StageManager : MonoBehaviour
     public void Dieing()
     {
         GameObject.Destroy(GameObject.FindGameObjectWithTag("Player"));
-        Invoke("SetField", 1);
+        Invoke("SetField", 5);
+
+        adso.Stop();
+        adso.clip = over;
+        adso.Play();
     }
 }

@@ -12,6 +12,7 @@ public class PlayerMoving : MonoBehaviour
 
     private CharacterController cc;
     private WeaponHandle wh;
+    
 
     Vector3 keyinput;
 
@@ -20,6 +21,7 @@ public class PlayerMoving : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         wh = GetComponentInChildren<WeaponHandle>();
+        
         keyinput = new Vector3();
         jumpGage = 0.5f;
     }

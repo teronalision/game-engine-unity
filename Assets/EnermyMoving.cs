@@ -36,4 +36,14 @@ public class EnermyMoving : MonoBehaviour
             GameObject.Destroy(other);
         }
     }
+
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnBecameVisible()
+    {
+        gameObject.SetActive(true);
+    }
 }

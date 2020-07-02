@@ -8,13 +8,14 @@ public class WeaponHandle : MonoBehaviour
     public float speed = 10;
     public GameObject bullet;
 
-
+    private AudioSource adso;
     private float timer;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = 0;
+        adso = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class WeaponHandle : MonoBehaviour
         timer = cooltime;
 
         GameObject.Destroy(obj, 5);//5초 뒤 총알 삭제
+        adso.Play();
     }
     public void Shot(string tag)
     {
