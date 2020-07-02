@@ -64,12 +64,13 @@ public class PlayerMoving : MonoBehaviour
         }
         else if (other.tag == "Item")
         {
-
-            GameObject obj = Instantiate(other.GetComponentInParent<ItemHandle>().Weapon, transform);
-
             if (wh != null)
+            {
                 Destroy(transform.Find("Weapon").gameObject);
                 Destroy(transform.Find("Weapon(Clone)").gameObject);
+            }
+
+            GameObject obj = Instantiate(other.GetComponentInParent<ItemHandle>().Weapon, transform);
             wh = obj.GetComponent<WeaponHandle>();
             GameObject.Destroy(other.transform.parent.gameObject);
         }
