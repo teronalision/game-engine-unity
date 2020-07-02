@@ -26,14 +26,22 @@ public class WeaponHandle : MonoBehaviour
         }
     }
 
-    public void Shot(string tag)
+    public void Shot(string tag, Vector2 dir)
     {
         if (timer > 0)
             return;
 
-        GameObject obj = Instantiate(bullet, transform.position, Quaternion.identity);
-        obj.GetComponent<bulletMove>().Init(transform.right * speed);
+        Vector3 bpos = new Vector3(0, 0.5f, 0);
+
+        GameObject obj = Instantiate(bullet, transform.position + bpos, Quaternion.identity);
+        obj.GetComponent<bulletMove>().Init(dir * speed);
         obj.tag = tag;
         timer = cooltime;
+
+        GameObject.Destroy(obj, 10);//10초 뒤 총알 삭제
+    }
+    public void Shot(string tag)
+    {
+        Shot(tag, Vector2.right);
     }
 }

@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  jumpPower: 20
+  jumpPower: 10
 --- !u!1 &1970691638815276757
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327797666671453381, guid: dea81a5f287d4c84bbdc5dc0c859db67,
+        type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3327797666671453383, guid: dea81a5f287d4c84bbdc5dc0c859db67,
         type: 3}

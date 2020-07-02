@@ -33,6 +33,7 @@ public class EnermyMoving : MonoBehaviour
         if (other.gameObject.tag == "Players")
         {
             GameObject.Destroy(gameObject);
+            GameObject.Destroy(other);
         }
     }
 }

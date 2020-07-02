@@ -16,6 +16,11 @@ public class bulletMove : MonoBehaviour
     void Update()
     {
         transform.position += dir * Time.deltaTime;
+
+        if (transform.position.y < 0)
+        {
+            GameObject.Destroy(gameObject);
+        }
     }
 
     public void Init(Vector3 to)

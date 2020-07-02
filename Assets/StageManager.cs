@@ -44,7 +44,7 @@ public class StageManager : MonoBehaviour
     }
     public void Dieing()
     {
-        GameObject.Destroy(player);
-        SetField();
+        GameObject.Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Invoke("SetField", 1);
     }
 }
