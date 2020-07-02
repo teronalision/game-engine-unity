@@ -45,7 +45,7 @@ public class PlayerMoving : MonoBehaviour
         Vector2 mouse = Input.mousePosition;
         mouse -= new Vector2(Screen.width/2, Screen.height/2);
         mouse = mouse.normalized;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && wh != null)
         {
             //Debug.Log(mouse);
             wh.Shot("Players", mouse);
@@ -53,14 +53,26 @@ public class PlayerMoving : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Goal")
+        if (other.tag == "Goal")
         {
             GameObject.Find("StageManager").GetComponent<StageManager>().StageClear();
         }
-        else if (other.gameObject.tag == "Enermy")
+        else if (other.tag == "Enermy")
         {
             GameObject.Find("StageManager").GetComponent<StageManager>().Dieing();
             GameObject.Destroy(other);
         }
+        else if (other.tag == "Item")
+        {
+
+            GameObject obj = Instantiate(other.GetComponentInParent<ItemHandle>().Weapon, transform);
+
+            if (wh != null)
+                Destroy(transform.Find("Weapon").gameObject);
+                Destroy(transform.Find("Weapon(Clone)").gameObject);
+            wh = obj.GetComponent<WeaponHandle>();
+            GameObject.Destroy(other.transform.parent.gameObject);
+        }
+        Debug.Log(other.tag);
     }
 }

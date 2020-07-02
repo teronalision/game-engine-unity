@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponHandle : MonoBehaviour
 {
-    public float cooltime;
-    public float speed;
+    public float cooltime = 0.2f;
+    public float speed = 10;
     public GameObject bullet;
 
 
@@ -38,10 +38,10 @@ public class WeaponHandle : MonoBehaviour
         obj.tag = tag;
         timer = cooltime;
 
-        GameObject.Destroy(obj, 10);//10초 뒤 총알 삭제
+        GameObject.Destroy(obj, 5);//5초 뒤 총알 삭제
     }
     public void Shot(string tag)
     {
-        Shot(tag, Vector2.right);
+        Shot(tag, transform.right);
     }
 }

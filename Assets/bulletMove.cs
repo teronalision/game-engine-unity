@@ -27,4 +27,9 @@ public class bulletMove : MonoBehaviour
     {
         dir = to;
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
