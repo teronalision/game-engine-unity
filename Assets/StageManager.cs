@@ -39,6 +39,17 @@ public class StageManager : MonoBehaviour
     {
         Instantiate<GameObject>(player, Vector3.zero, Quaternion.identity);
 
+        var objs = GameObject.FindGameObjectsWithTag("Enermy");
+        foreach (GameObject o in objs)
+        {
+            Destroy(o);
+        }
+
+        for (int i = 0; i<10; i++)
+        {
+            Instantiate<GameObject>(enermys[0], new Vector3(Random.RandomRange(7, 80),1,0), Quaternion.Euler(0,180,0));
+        }
+
         adso.clip = bgm;
         adso.loop = true;
         adso.Play();

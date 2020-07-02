@@ -9,6 +9,8 @@ public class EnermyMoving : MonoBehaviour
 
     float timer = 0;
 
+    bool on = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,18 @@ public class EnermyMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        
+        if (Vector3.Distance(PlayerMoving.pos, transform.position) < 15)
+        {
+            on = true;
+        }
+        else
+        {
+            on = false;
+            return;
+        }
+
+        timer += Random.RandomRange(0.01f, 0.1f);
 
         if (timer > 5)
         {
@@ -30,20 +43,10 @@ public class EnermyMoving : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Players")
+        if (other.gameObject.tag == "Players" && on)
         {
             GameObject.Destroy(gameObject);
             GameObject.Destroy(other);
         }
-    }
-
-    private void OnBecameInvisible()
-    {
-        gameObject.SetActive(false);
-    }
-
-    private void OnBecameVisible()
-    {
-        gameObject.SetActive(true);
     }
 }

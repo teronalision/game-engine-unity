@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMoving : MonoBehaviour
 {
+    static public Vector3 pos;
+
 
     public float speed;
     public float jumpPower;
@@ -12,6 +14,7 @@ public class PlayerMoving : MonoBehaviour
 
     private CharacterController cc;
     private WeaponHandle wh;
+    private Animation ani;
     
 
     Vector3 keyinput;
@@ -21,18 +24,20 @@ public class PlayerMoving : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         wh = GetComponentInChildren<WeaponHandle>();
+        ani = GetComponent<Animation>();
         
         keyinput = new Vector3();
-        jumpGage = 0.5f;
+        jumpGage = 0.3f;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         keyinput = new Vector3(Input.GetAxis("Horizontal") * speed, -5, 0);
 
         if (cc.isGrounded) {
-            jumpGage = 0.2f;        
+            jumpGage = 0.3f;        
         }
         if (Input.GetButton("Jump") && jumpGage > 0)
         {
@@ -46,6 +51,19 @@ public class PlayerMoving : MonoBehaviour
 
 
         cc.Move(keyinput * Time.deltaTime);
+        if (Mathf.Abs(cc.velocity.x) > 0)
+        {
+            ani.Play();
+        }
+        else
+        {
+            ani.Stop();
+        }
+        if (cc.velocity.y > 0)
+        {
+
+        }
+
 
         ////
         Vector2 mouse = Input.mousePosition;
@@ -56,6 +74,8 @@ public class PlayerMoving : MonoBehaviour
             //Debug.Log(mouse);
             wh.Shot("Players", mouse);
         }
+
+        pos = transform.position;
     }
     private void OnTriggerEnter(Collider other)
     {
