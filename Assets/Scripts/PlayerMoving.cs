@@ -37,6 +37,10 @@ public class PlayerMoving : MonoBehaviour
             keyinput.y = jumpPower;
             jumpGage -= Time.deltaTime;
         }
+        if (Input.GetButtonUp("Jump"))
+        {
+            jumpGage = 0;
+        }
 
 
         cc.Move(keyinput * Time.deltaTime);
@@ -67,10 +71,10 @@ public class PlayerMoving : MonoBehaviour
             if (wh != null)
             {
                 Destroy(transform.Find("Weapon").gameObject);
-                Destroy(transform.Find("Weapon(Clone)").gameObject);
             }
 
             GameObject obj = Instantiate(other.GetComponentInParent<ItemHandle>().Weapon, transform);
+            obj.name = "Weapon";
             wh = obj.GetComponent<WeaponHandle>();
             GameObject.Destroy(other.transform.parent.gameObject);
         }
