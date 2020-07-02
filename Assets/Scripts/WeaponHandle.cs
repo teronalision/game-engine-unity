@@ -26,13 +26,14 @@ public class WeaponHandle : MonoBehaviour
         }
     }
 
-    public void Shot()
+    public void Shot(string tag)
     {
         if (timer > 0)
             return;
 
         GameObject obj = Instantiate(bullet, transform.position, Quaternion.identity);
-        obj.GetComponent<bulletMove>().Init(new Vector3(speed,0,0));
+        obj.GetComponent<bulletMove>().Init(transform.right * speed);
+        obj.tag = tag;
         timer = cooltime;
     }
 }

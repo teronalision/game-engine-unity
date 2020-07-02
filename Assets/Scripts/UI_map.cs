@@ -20,6 +20,8 @@ public class UI_map : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (charic == null) charic = GameObject.FindGameObjectWithTag("Player");
+
         mSlider.value = Mathf.Clamp01(charic.transform.position.x / goal);
     }
 }

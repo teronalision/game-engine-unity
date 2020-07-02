@@ -15,6 +15,8 @@ public class CameraMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player").transform;
+
         Vector3 p = transform.position;
         p.x = player.position.x;
         transform.position = Vector3.Slerp(transform.position, p, 0.1f);

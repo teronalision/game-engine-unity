@@ -44,7 +44,7 @@ public class PlayerMoving : MonoBehaviour
         ////
         if (Input.GetAxis("Fire1") > 0)
         {
-            wh.Shot();
+            wh.Shot("Players");
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -52,6 +52,10 @@ public class PlayerMoving : MonoBehaviour
         if (other.gameObject.tag == "Goal")
         {
             GameObject.Find("StageManager").GetComponent<StageManager>().StageClear();
+        }
+        else if (other.gameObject.tag == "Enermy")
+        {
+            GameObject.Find("StageManager").GetComponent<StageManager>().Dieing();
         }
     }
 }
